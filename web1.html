@@ -1,0 +1,1632 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Every Transport – Travel & Wisata Magetan</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+/* ===== CSS VARIABLES ===== */
+:root {
+  --gold: #C9A84C;
+  --gold-light: #E8C97A;
+  --gold-dark: #9A7A30;
+  --navy: #0D1B2A;
+  --navy-mid: #1A2E45;
+  --navy-light: #243B55;
+  --cream: #F8F4EE;
+  --cream-dark: #EDE7DC;
+  --white: #FFFFFF;
+  --text-dark: #1A1A2E;
+  --text-mid: #4A4A6A;
+  --text-light: #8A8AAA;
+  --success: #2ECC71;
+  --wa-green: #25D366;
+  --radius: 16px;
+  --radius-sm: 8px;
+  --shadow: 0 20px 60px rgba(13,27,42,0.15);
+  --shadow-gold: 0 8px 32px rgba(201,168,76,0.3);
+  --transition: all 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--text-dark);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--cream-dark); }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+/* ===== PRELOADER ===== */
+#preloader {
+  position: fixed; inset: 0; background: var(--navy); z-index: 9999;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+#preloader.hide { opacity: 0; visibility: hidden; }
+.loader-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem; color: var(--gold);
+  animation: pulse-logo 1.5s ease infinite;
+}
+.loader-line {
+  width: 60px; height: 2px; background: var(--gold-light);
+  margin-top: 16px; animation: loader-expand 1.5s ease infinite;
+}
+@keyframes pulse-logo { 0%,100%{opacity:0.5;transform:scale(0.97)} 50%{opacity:1;transform:scale(1)} }
+@keyframes loader-expand { 0%,100%{width:40px;opacity:0.5} 50%{width:100px;opacity:1} }
+
+/* ===== NAVBAR ===== */
+#navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  padding: 16px 24px; display: flex; align-items: center; justify-content: space-between;
+  transition: var(--transition); background: transparent;
+}
+#navbar.scrolled {
+  background: rgba(13,27,42,0.96); backdrop-filter: blur(20px);
+  padding: 10px 24px; box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+}
+.nav-brand {
+  display: flex; align-items: center; gap: 10px; text-decoration: none;
+}
+.nav-brand-icon {
+  width: 42px; height: 42px; background: var(--gold);
+  border-radius: 10px; display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem; color: var(--navy);
+}
+.nav-brand-text { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--white); }
+.nav-brand-text span { color: var(--gold); }
+.nav-links { display: flex; gap: 4px; align-items: center; }
+.nav-links a {
+  color: rgba(255,255,255,0.8); text-decoration: none; padding: 8px 14px;
+  border-radius: 20px; font-size: 0.85rem; font-weight: 500;
+  transition: var(--transition);
+}
+.nav-links a:hover { color: var(--gold); background: rgba(201,168,76,0.1); }
+.nav-cta {
+  background: var(--gold); color: var(--navy) !important;
+  font-weight: 600 !important; padding: 9px 20px !important;
+}
+.nav-cta:hover { background: var(--gold-light) !important; color: var(--navy) !important; }
+.hamburger {
+  display: none; flex-direction: column; gap: 5px; cursor: pointer;
+  padding: 8px; background: none; border: none;
+}
+.hamburger span {
+  display: block; width: 24px; height: 2px;
+  background: var(--white); border-radius: 2px; transition: var(--transition);
+}
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+.mobile-menu {
+  display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: var(--navy); z-index: 999; padding: 100px 32px 40px;
+  flex-direction: column; gap: 8px; transition: var(--transition);
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  color: var(--white); text-decoration: none; font-size: 1.3rem;
+  font-family: 'Playfair Display', serif; padding: 16px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  transition: var(--transition);
+}
+.mobile-menu a:hover { color: var(--gold); padding-left: 12px; }
+
+/* ===== HERO ===== */
+#hero {
+  min-height: 100vh; position: relative;
+  display: flex; align-items: center; overflow: hidden;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 60%, #1B3A5C 100%);
+}
+.hero-bg-pattern {
+  position: absolute; inset: 0; opacity: 0.05;
+  background-image: radial-gradient(circle at 25% 25%, var(--gold) 2px, transparent 2px),
+                    radial-gradient(circle at 75% 75%, var(--gold) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.hero-glow {
+  position: absolute; width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
+  top: -100px; right: -100px; animation: glow-float 6s ease-in-out infinite;
+}
+@keyframes glow-float { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(-30px,30px) scale(1.1)} }
+.hero-content {
+  position: relative; z-index: 2; padding: 120px 24px 60px;
+  max-width: 700px; margin: 0 auto; text-align: center;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3);
+  color: var(--gold-light); padding: 8px 20px; border-radius: 40px;
+  font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+  margin-bottom: 24px; animation: fadeInUp 0.8s ease both;
+}
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.2rem, 6vw, 3.8rem);
+  color: var(--white); line-height: 1.2; margin-bottom: 20px;
+  animation: fadeInUp 0.8s 0.2s ease both;
+}
+.hero-title em { color: var(--gold); font-style: normal; }
+.hero-subtitle {
+  color: rgba(255,255,255,0.65); font-size: 1.05rem;
+  max-width: 520px; margin: 0 auto 40px;
+  animation: fadeInUp 0.8s 0.4s ease both;
+}
+.hero-btns {
+  display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+  animation: fadeInUp 0.8s 0.6s ease both;
+}
+.btn-primary {
+  background: var(--gold); color: var(--navy);
+  padding: 14px 32px; border-radius: 40px; font-weight: 600;
+  text-decoration: none; font-size: 0.95rem;
+  box-shadow: var(--shadow-gold); transition: var(--transition);
+  border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(201,168,76,0.5); background: var(--gold-light); }
+.btn-outline {
+  background: transparent; color: var(--white);
+  padding: 14px 32px; border-radius: 40px; font-weight: 500;
+  text-decoration: none; font-size: 0.95rem;
+  border: 1.5px solid rgba(255,255,255,0.3); transition: var(--transition);
+  cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); background: rgba(201,168,76,0.05); }
+.hero-stats {
+  display: flex; gap: 40px; justify-content: center; margin-top: 60px; flex-wrap: wrap;
+  animation: fadeInUp 0.8s 0.8s ease both;
+}
+.stat { text-align: center; }
+.stat-num { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--gold); font-weight: 700; }
+.stat-label { color: rgba(255,255,255,0.5); font-size: 0.8rem; margin-top: 2px; }
+.hero-scroll {
+  position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  color: rgba(255,255,255,0.4); font-size: 0.75rem; animation: bounce-scroll 2s infinite;
+}
+.scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, transparent, var(--gold)); }
+@keyframes bounce-scroll { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(8px)} }
+@keyframes fadeInUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+
+/* ===== SECTIONS GENERAL ===== */
+section { padding: 80px 24px; }
+.section-header { text-align: center; margin-bottom: 56px; }
+.section-label {
+  display: inline-flex; align-items: center; gap: 10px;
+  color: var(--gold); font-size: 0.8rem; font-weight: 600;
+  letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 12px;
+}
+.section-label::before, .section-label::after {
+  content: ''; display: block; width: 24px; height: 1px; background: var(--gold);
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  color: var(--text-dark); line-height: 1.3;
+}
+.section-title em { color: var(--gold); font-style: normal; }
+.section-desc { color: var(--text-mid); max-width: 560px; margin: 12px auto 0; }
+
+/* ===== LAYANAN ===== */
+#layanan { background: var(--white); }
+.layanan-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; max-width: 1100px; margin: 0 auto; }
+.layanan-card {
+  background: var(--cream); border-radius: var(--radius);
+  padding: 32px 28px; text-align: center; position: relative; overflow: hidden;
+  transition: var(--transition); border: 1px solid transparent;
+  animation: fadeInUp 0.6s ease both;
+}
+.layanan-card::before {
+  content: ''; position: absolute; inset: 0; border-radius: var(--radius);
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  opacity: 0; transition: var(--transition);
+}
+.layanan-card:hover { transform: translateY(-8px); border-color: var(--gold); box-shadow: var(--shadow-gold); }
+.layanan-card:hover::before { opacity: 0.05; }
+.layanan-icon {
+  width: 64px; height: 64px; background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  border-radius: 16px; display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px; font-size: 1.6rem; color: var(--white);
+  transition: var(--transition); box-shadow: var(--shadow-gold);
+}
+.layanan-card:hover .layanan-icon { transform: scale(1.1) rotate(-5deg); }
+.layanan-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; }
+.layanan-desc { color: var(--text-mid); font-size: 0.9rem; }
+
+/* ===== ARMADA ===== */
+#armada { background: var(--cream); }
+.armada-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 28px; max-width: 1100px; margin: 0 auto; }
+.armada-card {
+  background: var(--white); border-radius: var(--radius);
+  overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+  transition: var(--transition); cursor: pointer;
+}
+.armada-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+.armada-img {
+  width: 100%; height: 200px; object-fit: cover;
+  background: linear-gradient(135deg, var(--navy-light), var(--navy-mid));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 4rem; color: rgba(255,255,255,0.3);
+  position: relative; overflow: hidden;
+}
+.armada-img img { width:100%; height:100%; object-fit:cover; display:block; }
+.armada-img .armada-icon-placeholder { display:flex; align-items:center; justify-content:center; width:100%; height:100%; }
+.armada-badge {
+  position: absolute; top: 12px; right: 12px;
+  background: var(--gold); color: var(--navy);
+  padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600;
+}
+.armada-body { padding: 20px 24px 24px; }
+.armada-name { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; margin-bottom: 4px; }
+.armada-seats {
+  color: var(--text-mid); font-size: 0.85rem; margin-bottom: 12px;
+  display: flex; align-items: center; gap: 6px;
+}
+.armada-price {
+  font-size: 1.1rem; font-weight: 700; color: var(--gold);
+  font-family: 'Playfair Display', serif;
+}
+.armada-desc { color: var(--text-mid); font-size: 0.875rem; margin: 8px 0 16px; }
+.armada-features { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.feature-tag {
+  background: var(--cream); color: var(--text-mid);
+  padding: 4px 10px; border-radius: 20px; font-size: 0.75rem;
+  display: flex; align-items: center; gap: 4px;
+}
+.armada-btn-book {
+  width: 100%; background: var(--wa-green); color: var(--white);
+  padding: 12px; border: none; border-radius: 10px; font-weight: 600;
+  cursor: pointer; transition: var(--transition); font-size: 0.9rem;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.armada-btn-book:hover { background: #1EBE5A; transform: scale(1.02); }
+
+/* ===== BOOKING FORM ===== */
+#booking { background: var(--navy); }
+#booking .section-title { color: var(--white); }
+#booking .section-label { color: var(--gold-light); }
+#booking .section-desc { color: rgba(255,255,255,0.5); }
+.booking-wrapper {
+  max-width: 760px; margin: 0 auto;
+  background: rgba(255,255,255,0.04); backdrop-filter: blur(10px);
+  border-radius: 24px; border: 1px solid rgba(201,168,76,0.2);
+  padding: 40px 36px;
+}
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.form-group { display: flex; flex-direction: column; gap: 8px; }
+.form-group.full { grid-column: 1/-1; }
+.form-label { color: rgba(255,255,255,0.7); font-size: 0.85rem; font-weight: 500; }
+.form-control {
+  background: rgba(255,255,255,0.06); border: 1.5px solid rgba(255,255,255,0.12);
+  border-radius: 10px; padding: 12px 16px; color: var(--white); font-size: 0.95rem;
+  font-family: 'DM Sans', sans-serif; transition: var(--transition); outline: none;
+}
+.form-control:focus { border-color: var(--gold); background: rgba(201,168,76,0.06); }
+.form-control option { background: var(--navy); }
+.form-control::placeholder { color: rgba(255,255,255,0.3); }
+textarea.form-control { resize: vertical; min-height: 100px; }
+.btn-wa {
+  width: 100%; margin-top: 8px; padding: 16px;
+  background: var(--wa-green); color: var(--white);
+  border: none; border-radius: 12px; font-size: 1rem; font-weight: 700;
+  cursor: pointer; transition: var(--transition); font-family: 'DM Sans', sans-serif;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+}
+.btn-wa:hover { background: #1DAB53; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,211,102,0.3); }
+
+/* ===== WISATA ===== */
+#wisata { background: var(--white); }
+.wisata-tabs { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
+.wisata-tab {
+  padding: 9px 22px; border-radius: 30px; border: 1.5px solid var(--cream-dark);
+  background: transparent; cursor: pointer; font-family: 'DM Sans', sans-serif;
+  font-size: 0.875rem; font-weight: 500; color: var(--text-mid); transition: var(--transition);
+}
+.wisata-tab.active, .wisata-tab:hover {
+  background: var(--gold); border-color: var(--gold); color: var(--navy); font-weight: 600;
+}
+.wisata-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; max-width: 1100px; margin: 0 auto; }
+.wisata-card {
+  border-radius: var(--radius); overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06); background: var(--white);
+  transition: var(--transition); animation: fadeInUp 0.5s ease both;
+}
+.wisata-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+.wisata-img {
+  height: 180px; background: linear-gradient(135deg, #2D5A27, #4A8F3F);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 3.5rem; position: relative; overflow: hidden;
+}
+.wisata-img-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+}
+.wisata-region {
+  position: absolute; top: 12px; left: 12px;
+  background: rgba(255,255,255,0.9); color: var(--text-dark);
+  padding: 3px 10px; border-radius: 20px; font-size: 0.72rem; font-weight: 600;
+}
+.wisata-type {
+  position: absolute; top: 12px; right: 12px;
+  padding: 3px 10px; border-radius: 20px; font-size: 0.72rem; font-weight: 600;
+}
+.wisata-type.alam { background: #27AE60; color: white; }
+.wisata-type.religi { background: #8E44AD; color: white; }
+.wisata-body { padding: 18px 20px 20px; }
+.wisata-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
+.wisata-loc { color: var(--text-light); font-size: 0.8rem; margin-bottom: 8px; display:flex; align-items:center; gap:4px; }
+.wisata-desc { color: var(--text-mid); font-size: 0.85rem; line-height: 1.6; }
+
+/* ===== GALERI TESTIMONIAL ===== */
+#galeri { background: var(--cream); }
+.testimonial-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; max-width: 1100px; margin: 0 auto; }
+.testimonial-card {
+  background: var(--white); border-radius: var(--radius); padding: 28px 24px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: var(--transition);
+  border-left: 4px solid var(--gold); position: relative;
+}
+.testimonial-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.testimonial-quote { font-size: 2.5rem; color: var(--gold); opacity: 0.4; line-height: 1; margin-bottom: 8px; font-family: serif; }
+.testimonial-text { color: var(--text-mid); font-size: 0.9rem; line-height: 1.7; margin-bottom: 20px; font-style: italic; }
+.testimonial-author { display: flex; align-items: center; gap: 12px; }
+.author-avatar {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; color: var(--white); font-weight: 700; flex-shrink: 0;
+}
+.author-name { font-weight: 600; font-size: 0.9rem; }
+.author-location { color: var(--text-light); font-size: 0.78rem; }
+.author-stars { color: var(--gold); font-size: 0.75rem; margin-top: 2px; }
+.gallery-photos { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; max-width: 1100px; margin: 40px auto 0; }
+.gallery-photo {
+  border-radius: 12px; overflow: hidden; aspect-ratio: 4/3;
+  background: linear-gradient(135deg, var(--navy-light), var(--navy-mid));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.5rem; color: rgba(255,255,255,0.3);
+  cursor: pointer; transition: var(--transition); position: relative;
+}
+.gallery-photo:hover { transform: scale(1.03); }
+.gallery-photo .overlay { position:absolute; inset:0; background:rgba(0,0,0,0.4); opacity:0; transition:var(--transition); display:flex; align-items:center; justify-content:center; color:white; font-size:1.5rem; }
+.gallery-photo:hover .overlay { opacity:1; }
+
+/* ===== VISI MISI ===== */
+#visimisi { background: var(--navy); }
+#visimisi .section-title { color: var(--white); }
+#visimisi .section-label { color: var(--gold-light); }
+.vm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; max-width: 900px; margin: 0 auto; }
+.vm-card {
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(201,168,76,0.2);
+  border-radius: var(--radius); padding: 36px 32px;
+  transition: var(--transition);
+}
+.vm-card:hover { background: rgba(201,168,76,0.06); border-color: var(--gold); }
+.vm-icon { font-size: 2rem; color: var(--gold); margin-bottom: 20px; }
+.vm-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--white); margin-bottom: 16px; }
+.vm-text { color: rgba(255,255,255,0.6); font-size: 0.9rem; line-height: 1.8; }
+.vm-text li { margin-bottom: 8px; padding-left: 4px; }
+
+/* ===== GOOGLE MAP ===== */
+#peta { background: var(--cream); }
+.map-wrapper {
+  max-width: 900px; margin: 0 auto; border-radius: var(--radius);
+  overflow: hidden; box-shadow: var(--shadow); border: 4px solid var(--white);
+}
+.map-wrapper iframe { width: 100%; height: 420px; border: none; display: block; }
+
+/* ===== KONTAK ===== */
+#kontak { background: var(--white); }
+.kontak-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; max-width: 900px; margin: 0 auto; }
+.kontak-item {
+  display: flex; align-items: flex-start; gap: 16px;
+  background: var(--cream); border-radius: var(--radius); padding: 24px;
+  transition: var(--transition);
+}
+.kontak-item:hover { background: var(--cream-dark); transform: translateY(-3px); }
+.kontak-icon-wrap {
+  width: 48px; height: 48px; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  border-radius: 12px; display: flex; align-items: center; justify-content: center;
+  color: var(--white); font-size: 1.1rem;
+}
+.kontak-label { font-size: 0.78rem; color: var(--text-light); margin-bottom: 4px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; }
+.kontak-value { font-weight: 600; color: var(--text-dark); font-size: 0.9rem; line-height: 1.5; }
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--navy); color: rgba(255,255,255,0.5);
+  text-align: center; padding: 32px 24px;
+  font-size: 0.85rem; border-top: 1px solid rgba(201,168,76,0.2);
+}
+footer .footer-brand { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 1.2rem; margin-bottom: 8px; }
+footer a { color: var(--gold); text-decoration: none; }
+
+/* ===== FLOATING WA ===== */
+.float-wa {
+  position: fixed; bottom: 24px; right: 24px; z-index: 999;
+  width: 58px; height: 58px; background: var(--wa-green);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 1.6rem; box-shadow: 0 8px 24px rgba(37,211,102,0.4);
+  animation: wa-pulse 2s infinite; transition: var(--transition); text-decoration: none;
+}
+.float-wa:hover { transform: scale(1.1); }
+@keyframes wa-pulse { 0%,100%{box-shadow:0 8px 24px rgba(37,211,102,0.4)} 50%{box-shadow:0 8px 40px rgba(37,211,102,0.7)} }
+
+/* ===== ADMIN PANEL ===== */
+#admin-toggle {
+  position: fixed; bottom: 24px; left: 24px; z-index: 999;
+  background: var(--navy-mid); color: var(--gold);
+  border: 1.5px solid rgba(201,168,76,0.4); border-radius: 40px;
+  padding: 10px 18px; cursor: pointer; font-size: 0.8rem; font-weight: 600;
+  display: flex; align-items: center; gap: 6px; transition: var(--transition);
+}
+#admin-toggle:hover { background: var(--navy-light); border-color: var(--gold); }
+.admin-modal {
+  position: fixed; inset: 0; z-index: 2000;
+  background: rgba(13,27,42,0.85); backdrop-filter: blur(6px);
+  display: none; align-items: flex-start; justify-content: center;
+  padding: 20px 16px; overflow-y: auto;
+}
+.admin-modal.open { display: flex; }
+.admin-panel {
+  background: var(--white); border-radius: 20px;
+  width: 100%; max-width: 780px; overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.4); margin: auto;
+}
+.admin-header {
+  background: var(--navy); padding: 20px 28px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.admin-title { font-family: 'Playfair Display', serif; color: var(--white); font-size: 1.2rem; }
+.admin-title span { color: var(--gold); }
+.admin-close { background: none; border: none; color: rgba(255,255,255,0.5); font-size: 1.4rem; cursor: pointer; transition: var(--transition); }
+.admin-close:hover { color: var(--white); }
+.admin-body { padding: 28px; }
+.admin-login-form { max-width: 360px; margin: 0 auto; }
+.admin-section { display: none; }
+.admin-section.active { display: block; }
+.admin-tabs { display: flex; gap: 4px; margin-bottom: 24px; border-bottom: 1px solid var(--cream-dark); padding-bottom: 16px; }
+.admin-tab {
+  padding: 8px 18px; border-radius: 8px; border: none;
+  background: transparent; cursor: pointer; font-size: 0.85rem; font-weight: 500;
+  color: var(--text-mid); transition: var(--transition);
+}
+.admin-tab.active { background: var(--gold); color: var(--navy); font-weight: 700; }
+.admin-field { margin-bottom: 18px; }
+.admin-label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--text-mid); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+.admin-input {
+  width: 100%; padding: 10px 14px; border: 1.5px solid var(--cream-dark);
+  border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+  outline: none; transition: var(--transition); color: var(--text-dark);
+}
+.admin-input:focus { border-color: var(--gold); }
+.admin-vehicle-list { display: flex; flex-direction: column; gap: 12px; }
+.admin-vehicle-item {
+  border: 1.5px solid var(--cream-dark); border-radius: 12px; padding: 16px;
+  display: grid; grid-template-columns: 80px 1fr auto; gap: 16px; align-items: center;
+}
+.admin-vehicle-thumb {
+  width: 80px; height: 60px; border-radius: 8px;
+  background: var(--cream); object-fit: cover;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2rem; overflow: hidden;
+}
+.admin-vehicle-thumb img { width:100%; height:100%; object-fit:cover; }
+.admin-vehicle-name { font-weight: 700; font-size: 0.95rem; margin-bottom: 4px; }
+.admin-vehicle-price { color: var(--gold); font-weight: 600; font-size: 0.85rem; }
+.admin-vehicle-actions { display: flex; flex-direction: column; gap: 6px; }
+.admin-btn {
+  padding: 7px 14px; border-radius: 7px; border: none;
+  cursor: pointer; font-size: 0.78rem; font-weight: 600; transition: var(--transition);
+}
+.admin-btn-edit { background: var(--navy); color: var(--white); }
+.admin-btn-edit:hover { background: var(--navy-light); }
+.admin-btn-photo { background: var(--gold); color: var(--navy); }
+.admin-btn-photo:hover { background: var(--gold-light); }
+.admin-btn-save {
+  width: 100%; padding: 12px; background: var(--gold); color: var(--navy);
+  border: none; border-radius: 10px; font-weight: 700; font-size: 1rem;
+  cursor: pointer; transition: var(--transition); font-family: 'DM Sans', sans-serif;
+}
+.admin-btn-save:hover { background: var(--gold-light); }
+.admin-modal-inner {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 3000;
+  display: none; align-items: center; justify-content: center; padding: 20px;
+}
+.admin-modal-inner.open { display: flex; }
+.admin-modal-box {
+  background: var(--white); border-radius: 16px; padding: 28px;
+  max-width: 480px; width: 100%;
+}
+.admin-modal-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 20px; }
+.upload-zone {
+  border: 2px dashed var(--cream-dark); border-radius: 12px;
+  padding: 32px; text-align: center; cursor: pointer;
+  transition: var(--transition); background: var(--cream);
+  margin-bottom: 16px;
+}
+.upload-zone:hover { border-color: var(--gold); background: rgba(201,168,76,0.04); }
+.upload-zone input { display: none; }
+.upload-preview { width: 100%; height: 160px; border-radius: 8px; object-fit: cover; display: none; margin-bottom: 12px; }
+.admin-msg { padding: 12px 16px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; margin-top: 12px; display: none; }
+.admin-msg.success { background: rgba(46,204,113,0.1); color: #27AE60; border: 1px solid #27AE60; }
+.admin-msg.error { background: rgba(231,76,60,0.1); color: #E74C3C; border: 1px solid #E74C3C; }
+.site-setting-row { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--cream); border-radius: 10px; margin-bottom: 10px; }
+.site-setting-label { font-size: 0.85rem; font-weight: 600; color: var(--text-dark); }
+.site-setting-val { color: var(--text-mid); font-size: 0.82rem; }
+.site-setting-actions { display:flex; gap:8px; }
+
+/* ===== SCROLL REVEAL ===== */
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+  .nav-links { display:none; }
+  .hamburger { display:flex; }
+  .form-grid { grid-template-columns: 1fr; }
+  .vm-grid { grid-template-columns: 1fr; }
+  .admin-vehicle-item { grid-template-columns: 60px 1fr; }
+  .admin-vehicle-actions { flex-direction: row; grid-column: 1/-1; }
+  section { padding: 60px 16px; }
+  .booking-wrapper { padding: 28px 20px; }
+  .admin-body { padding: 20px; }
+}
+@media(max-width:480px){
+  .hero-stats { gap: 24px; }
+  .stat-num { font-size: 1.6rem; }
+  .admin-vehicle-item { grid-template-columns: 1fr; }
+  .admin-vehicle-thumb { width:100%; height:100px; }
+}
+
+/* WISATA EMOJI BG */
+.bg-gunung { background: linear-gradient(135deg,#1B5E20,#388E3C); }
+.bg-pantai { background: linear-gradient(135deg,#0277BD,#29B6F6); }
+.bg-air-terjun { background: linear-gradient(135deg,#004D40,#26A69A); }
+.bg-danau { background: linear-gradient(135deg,#01579B,#0288D1); }
+.bg-masjid { background: linear-gradient(135deg,#4A148C,#7B1FA2); }
+.bg-candi { background: linear-gradient(135deg,#5D4037,#8D6E63); }
+.bg-makam { background: linear-gradient(135deg,#33691E,#689F38); }
+.bg-taman { background: linear-gradient(135deg,#2E7D32,#66BB6A); }
+</style>
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="loader-logo">Every Transport</div>
+  <div class="loader-line"></div>
+</div>
+
+<!-- FLOATING WA -->
+<a href="https://wa.me/6281234567890?text=Halo%20Every%20Transport%2C%20saya%20ingin%20bertanya" class="float-wa" target="_blank" title="Chat WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- ADMIN TOGGLE -->
+<button id="admin-toggle" onclick="openAdmin()">
+  <i class="fas fa-shield-alt"></i> Admin
+</button>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="#hero" class="nav-brand">
+    <div class="nav-brand-icon"><i class="fas fa-car"></i></div>
+    <span class="nav-brand-text">Every <span>Transport</span></span>
+  </a>
+  <div class="nav-links">
+    <a href="#layanan">Layanan</a>
+    <a href="#armada">Armada</a>
+    <a href="#wisata">Wisata</a>
+    <a href="#galeri">Galeri</a>
+    <a href="#peta">Lokasi</a>
+    <a href="#booking" class="nav-cta">Booking Sekarang</a>
+  </div>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#layanan" onclick="toggleMenu()">Layanan</a>
+  <a href="#armada" onclick="toggleMenu()">Armada</a>
+  <a href="#wisata" onclick="toggleMenu()">Wisata</a>
+  <a href="#galeri" onclick="toggleMenu()">Galeri & Testimoni</a>
+  <a href="#visimisi" onclick="toggleMenu()">Visi & Misi</a>
+  <a href="#peta" onclick="toggleMenu()">Lokasi</a>
+  <a href="#booking" onclick="toggleMenu()">📱 Booking via WhatsApp</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><i class="fas fa-star"></i> Travel & Wisata Terpercaya Area Karesidenan Madiun</div>
+    <h1 class="hero-title">Perjalanan <em>Nyaman</em> & Tak Terlupakan Bersama Kami</h1>
+    <p class="hero-subtitle">Antar jemput bandara, wisata alam & religi, dan transportasi group — Magetan, Ponorogo, Madiun dan sekitarnya.</p>
+    <div class="hero-btns">
+      <a href="#booking" class="btn-primary"><i class="fas fa-calendar-check"></i> Booking Sekarang</a>
+      <a href="#armada" class="btn-outline"><i class="fas fa-car-side"></i> Lihat Armada</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num" data-count="500">0</div><div class="stat-label">Penumpang/Bulan</div></div>
+      <div class="stat"><div class="stat-num" data-count="8">0</div><div class="stat-label">Jenis Armada</div></div>
+      <div class="stat"><div class="stat-num" data-count="5">0</div><div class="stat-label">Tahun Pengalaman</div></div>
+      <div class="stat"><div class="stat-num" data-count="100">0</div><div class="stat-label">% Kepuasan</div></div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- LAYANAN -->
+<section id="layanan">
+  <div class="section-header reveal">
+    <div class="section-label">Apa yang Kami Tawarkan</div>
+    <h2 class="section-title">Layanan <em>Unggulan</em> Kami</h2>
+    <p class="section-desc">Kami hadir untuk memenuhi kebutuhan transportasi Anda dengan pelayanan profesional dan armada terawat.</p>
+  </div>
+  <div class="layanan-grid">
+    <div class="layanan-card reveal" style="animation-delay:0.1s">
+      <div class="layanan-icon"><i class="fas fa-plane-arrival"></i></div>
+      <div class="layanan-title">Antar Jemput Bandara</div>
+      <div class="layanan-desc">Layanan antar jemput ke Bandara Juanda Surabaya, Adi Soemarmo Solo, dan bandara lainnya. On-time guarantee.</div>
+    </div>
+    <div class="layanan-card reveal" style="animation-delay:0.2s">
+      <div class="layanan-icon"><i class="fas fa-mountain-sun"></i></div>
+      <div class="layanan-title">Wisata Alam & Religi</div>
+      <div class="layanan-desc">Paket wisata ke destinasi alam dan religi terbaik di Jawa Timur, Tengah, dan Barat bersama guide berpengalaman.</div>
+    </div>
+    <div class="layanan-card reveal" style="animation-delay:0.3s">
+      <div class="layanan-icon"><i class="fas fa-users"></i></div>
+      <div class="layanan-title">Sewa Kendaraan Group</div>
+      <div class="layanan-desc">Tersedia hiace, elf, dan bus untuk perjalanan group, study tour, arisan, reuni, dan acara corporate.</div>
+    </div>
+    <div class="layanan-card reveal" style="animation-delay:0.4s">
+      <div class="layanan-icon"><i class="fas fa-map-marked-alt"></i></div>
+      <div class="layanan-title">Drop & Tour</div>
+      <div class="layanan-desc">Layanan antar-jemput titik ke titik dengan atau tanpa supir siap, melayani seluruh area Karesidenan Madiun.</div>
+    </div>
+    <div class="layanan-card reveal" style="animation-delay:0.5s">
+      <div class="layanan-icon"><i class="fas fa-mosque"></i></div>
+      <div class="layanan-title">Wisata Religi</div>
+      <div class="layanan-desc">Ziarah ke makam wali, pesantren, dan destinasi religi dengan armada nyaman dan sopir berpengalaman.</div>
+    </div>
+    <div class="layanan-card reveal" style="animation-delay:0.6s">
+      <div class="layanan-icon"><i class="fas fa-clock"></i></div>
+      <div class="layanan-title">24 Jam Siap Melayani</div>
+      <div class="layanan-desc">Layanan kami tersedia 24 jam sehari, 7 hari seminggu. Hubungi kami kapan saja via WhatsApp.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ARMADA -->
+<section id="armada">
+  <div class="section-header reveal">
+    <div class="section-label">Pilihan Kendaraan</div>
+    <h2 class="section-title">Katalog <em>Armada</em> Kami</h2>
+    <p class="section-desc">Semua kendaraan terawat, ber-AC, dan dikemudikan oleh pengemudi berpengalaman dan berlisensi resmi.</p>
+  </div>
+  <div class="armada-grid" id="armadaGrid">
+    <!-- filled by JS -->
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section id="booking">
+  <div class="section-header reveal">
+    <div class="section-label">Reservasi</div>
+    <h2 class="section-title">Form <em>Booking</em> via WhatsApp</h2>
+    <p class="section-desc">Isi form di bawah ini, kami akan langsung merespons pesan Anda di WhatsApp.</p>
+  </div>
+  <div class="booking-wrapper reveal">
+    <div class="form-grid">
+      <div class="form-group">
+        <label class="form-label">Nama Lengkap *</label>
+        <input type="text" class="form-control" id="bk_nama" placeholder="Nama Anda">
+      </div>
+      <div class="form-group">
+        <label class="form-label">No. HP / WhatsApp *</label>
+        <input type="tel" class="form-control" id="bk_hp" placeholder="08xxxxxxxxxx">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Jenis Layanan *</label>
+        <select class="form-control" id="bk_layanan">
+          <option value="">-- Pilih Layanan --</option>
+          <option>Antar Jemput Bandara</option>
+          <option>Wisata Alam</option>
+          <option>Wisata Religi</option>
+          <option>Sewa Kendaraan Group</option>
+          <option>Drop & Tour</option>
+          <option>Lainnya</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Pilihan Armada</label>
+        <select class="form-control" id="bk_armada">
+          <option value="">-- Pilih Armada --</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Tanggal Keberangkatan *</label>
+        <input type="date" class="form-control" id="bk_tgl">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Jumlah Penumpang</label>
+        <input type="number" class="form-control" id="bk_pax" placeholder="e.g. 4" min="1">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Kota Asal / Titik Jemput</label>
+        <input type="text" class="form-control" id="bk_asal" placeholder="Magetan / Ponorogo / Madiun...">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Tujuan</label>
+        <input type="text" class="form-control" id="bk_tujuan" placeholder="Bandara Juanda / Telaga Sarangan...">
+      </div>
+      <div class="form-group full">
+        <label class="form-label">Keterangan Tambahan</label>
+        <textarea class="form-control" id="bk_ket" placeholder="Informasi tambahan, permintaan khusus, dll..."></textarea>
+      </div>
+    </div>
+    <button class="btn-wa" onclick="kirimBooking()">
+      <i class="fab fa-whatsapp" style="font-size:1.3rem"></i> Kirim via WhatsApp Sekarang
+    </button>
+  </div>
+</section>
+
+<!-- WISATA -->
+<section id="wisata">
+  <div class="section-header reveal">
+    <div class="section-label">Destinasi Pilihan</div>
+    <h2 class="section-title">Wisata <em>Alam & Religi</em></h2>
+    <p class="section-desc">Jelajahi keindahan destinasi terbaik di Jawa — kami siap mengantar Anda.</p>
+  </div>
+  <div class="wisata-tabs">
+    <button class="wisata-tab active" onclick="filterWisata('semua',this)">Semua</button>
+    <button class="wisata-tab" onclick="filterWisata('jatim',this)">Jawa Timur</button>
+    <button class="wisata-tab" onclick="filterWisata('jateng',this)">Jawa Tengah</button>
+    <button class="wisata-tab" onclick="filterWisata('jabar',this)">Jawa Barat</button>
+    <button class="wisata-tab" onclick="filterWisata('alam',this)">🌿 Alam</button>
+    <button class="wisata-tab" onclick="filterWisata('religi',this)">🕌 Religi</button>
+  </div>
+  <div class="wisata-grid" id="wisataGrid">
+    <!-- filled by JS -->
+  </div>
+</section>
+
+<!-- GALERI & TESTIMONI -->
+<section id="galeri">
+  <div class="section-header reveal">
+    <div class="section-label">Kepuasan Pelanggan</div>
+    <h2 class="section-title">Galeri & <em>Testimoni</em></h2>
+    <p class="section-desc">Apa kata mereka yang sudah mempercayakan perjalanannya kepada kami.</p>
+  </div>
+  <div class="testimonial-grid">
+    <div class="testimonial-card reveal">
+      <div class="testimonial-quote">"</div>
+      <p class="testimonial-text">Pelayanannya luar biasa! Sopirnya ramah, tepat waktu, dan kendaraan sangat bersih. Kami sekeluarga sangat puas dengan layanan antar jemput ke Bandara Juanda.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">BW</div>
+        <div>
+          <div class="author-name">Budi Waluyo</div>
+          <div class="author-location"><i class="fas fa-map-marker-alt"></i> Magetan</div>
+          <div class="author-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card reveal" style="animation-delay:0.1s">
+      <div class="testimonial-quote">"</div>
+      <p class="testimonial-text">Rekomendasi banget buat wisata religi! Kami ikut paket ziarah wali 9 dan semua terlayani dengan baik. Bis nyaman, AC dingin, sopir sabar.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">SR</div>
+        <div>
+          <div class="author-name">Siti Rahayu</div>
+          <div class="author-location"><i class="fas fa-map-marker-alt"></i> Ponorogo</div>
+          <div class="author-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card reveal" style="animation-delay:0.2s">
+      <div class="testimonial-quote">"</div>
+      <p class="testimonial-text">Study tour sekolah kami ke Bromo pakai medium bus dari Every Transport. Harga bersahabat, armada prima. Akan kami gunakan lagi tahun depan!</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">AP</div>
+        <div>
+          <div class="author-name">Agung Prasetyo</div>
+          <div class="author-location"><i class="fas fa-map-marker-alt"></i> Madiun</div>
+          <div class="author-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card reveal" style="animation-delay:0.3s">
+      <div class="testimonial-quote">"</div>
+      <p class="testimonial-text">Booking mudah via WhatsApp, langsung direspon cepat. Hiace Commuter sangat nyaman untuk 15 orang. Perjalanan ke Dieng sangat menyenangkan!</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">DL</div>
+        <div>
+          <div class="author-name">Dewi Lestari</div>
+          <div class="author-location"><i class="fas fa-map-marker-alt"></i> Ngawi</div>
+          <div class="author-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card reveal" style="animation-delay:0.4s">
+      <div class="testimonial-quote">"</div>
+      <p class="testimonial-text">Harga sangat transparan, tidak ada biaya tersembunyi. Inova Reborn-nya keren, nyaman banget. Sopirnya tahu jalan dan friendly. Top banget!</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">RM</div>
+        <div>
+          <div class="author-name">Rizal Mahendra</div>
+          <div class="author-location"><i class="fas fa-map-marker-alt"></i> Pacitan</div>
+          <div class="author-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card reveal" style="animation-delay:0.5s">
+      <div class="testimonial-quote">"</div>
+      <p class="testimonial-text">Sudah 3 kali pakai jasa Every Transport untuk antar jemput bandara. Selalu on-time, tidak pernah telat. Sangat direkomendasikan!</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">NH</div>
+        <div>
+          <div class="author-name">Nur Hidayah</div>
+          <div class="author-location"><i class="fas fa-map-marker-alt"></i> Magetan</div>
+          <div class="author-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Galeri Foto -->
+  <div style="text-align:center;margin-top:56px;margin-bottom:24px">
+    <div class="section-label" style="justify-content:center">Dokumentasi Perjalanan</div>
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.6rem">Galeri <em style="color:var(--gold)">Foto</em></h3>
+  </div>
+  <div class="gallery-photos">
+    <div class="gallery-photo bg-gunung" style="color:white;font-size:2rem">🏔️<div class="overlay"><i class="fas fa-expand-alt"></i></div></div>
+    <div class="gallery-photo bg-pantai" style="color:white;font-size:2rem">🚌<div class="overlay"><i class="fas fa-expand-alt"></i></div></div>
+    <div class="gallery-photo bg-masjid" style="color:white;font-size:2rem">🕌<div class="overlay"><i class="fas fa-expand-alt"></i></div></div>
+    <div class="gallery-photo bg-candi" style="color:white;font-size:2rem">🚗<div class="overlay"><i class="fas fa-expand-alt"></i></div></div>
+    <div class="gallery-photo bg-air-terjun" style="color:white;font-size:2rem">💧<div class="overlay"><i class="fas fa-expand-alt"></i></div></div>
+    <div class="gallery-photo bg-taman" style="color:white;font-size:2rem">🌺<div class="overlay"><i class="fas fa-expand-alt"></i></div></div>
+  </div>
+</section>
+
+<!-- VISI MISI -->
+<section id="visimisi">
+  <div class="section-header reveal">
+    <div class="section-label">Tentang Kami</div>
+    <h2 class="section-title" style="color:var(--white)">Visi & <em>Misi</em> Kami</h2>
+  </div>
+  <div class="vm-grid">
+    <div class="vm-card reveal">
+      <div class="vm-icon"><i class="fas fa-eye"></i></div>
+      <div class="vm-title">Visi</div>
+      <p class="vm-text">Menjadi perusahaan transportasi dan wisata terkemuka di wilayah Karesidenan Madiun yang dipercaya oleh masyarakat luas — menghadirkan perjalanan yang aman, nyaman, dan berkesan untuk setiap penumpang.</p>
+    </div>
+    <div class="vm-card reveal" style="animation-delay:0.15s">
+      <div class="vm-icon"><i class="fas fa-bullseye"></i></div>
+      <div class="vm-title">Misi</div>
+      <ul class="vm-text" style="padding-left:16px">
+        <li>Memberikan pelayanan transportasi yang profesional, aman, dan tepat waktu</li>
+        <li>Memastikan armada selalu dalam kondisi prima dan terawat secara berkala</li>
+        <li>Menyediakan pengemudi berlisensi resmi yang ramah dan berpengalaman</li>
+        <li>Mengembangkan paket wisata yang terjangkau namun berkualitas tinggi</li>
+        <li>Membangun kepercayaan melalui transparansi harga dan pelayanan prima</li>
+        <li>Berkontribusi pada perekonomian lokal di area Magetan, Ponorogo, dan Madiun</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- GOOGLE MAP -->
+<section id="peta">
+  <div class="section-header reveal">
+    <div class="section-label">Temukan Kami</div>
+    <h2 class="section-title">Lokasi <em>Kami</em></h2>
+    <p class="section-desc">Berbasis di Magetan, melayani seluruh area Karesidenan Madiun dan sekitarnya.</p>
+  </div>
+  <div class="map-wrapper reveal">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63311.07!2d111.3284!3d-7.6318!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e79c0000000001%3A0x0!2sMagetan%2C%20Jawa%20Timur!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+</section>
+
+<!-- KONTAK -->
+<section id="kontak">
+  <div class="section-header reveal">
+    <div class="section-label">Hubungi Kami</div>
+    <h2 class="section-title">Info <em>Kontak</em></h2>
+  </div>
+  <div class="kontak-grid">
+    <div class="kontak-item reveal">
+      <div class="kontak-icon-wrap"><i class="fab fa-whatsapp"></i></div>
+      <div>
+        <div class="kontak-label">WhatsApp</div>
+        <div class="kontak-value"><a href="https://wa.me/6281234567890" target="_blank">+62 812-3456-7890</a></div>
+      </div>
+    </div>
+    <div class="kontak-item reveal" style="animation-delay:0.1s">
+      <div class="kontak-icon-wrap"><i class="fas fa-map-marker-alt"></i></div>
+      <div>
+        <div class="kontak-label">Alamat</div>
+        <div class="kontak-value">Jl. Raya Magetan, Kab. Magetan, Jawa Timur</div>
+      </div>
+    </div>
+    <div class="kontak-item reveal" style="animation-delay:0.2s">
+      <div class="kontak-icon-wrap"><i class="fas fa-clock"></i></div>
+      <div>
+        <div class="kontak-label">Operasional</div>
+        <div class="kontak-value">24 Jam / 7 Hari<br><small style="color:var(--success)">● Siap Melayani</small></div>
+      </div>
+    </div>
+    <div class="kontak-item reveal" style="animation-delay:0.3s">
+      <div class="kontak-icon-wrap"><i class="fas fa-envelope"></i></div>
+      <div>
+        <div class="kontak-label">Email</div>
+        <div class="kontak-value">info@everytransport.id</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">Every Transport</div>
+  <p>Travel & Wisata | Antar Jemput Bandara | Magetan · Ponorogo · Madiun</p>
+  <p style="margin-top:8px">© 2025 Every Transport. All rights reserved.</p>
+</footer>
+
+<!-- ADMIN MODAL -->
+<div class="admin-modal" id="adminModal">
+  <div class="admin-panel">
+    <div class="admin-header">
+      <div class="admin-title">Dashboard <span>Admin</span></div>
+      <button class="admin-close" onclick="closeAdmin()"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="admin-body">
+      <!-- LOGIN -->
+      <div id="adminLogin" class="admin-section active">
+        <div class="admin-login-form">
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:4px">Login Admin</h3>
+          <p style="color:var(--text-light);font-size:0.85rem;margin-bottom:24px">Masuk untuk mengelola konten website</p>
+          <div class="admin-field">
+            <label class="admin-label">Username</label>
+            <input type="text" class="admin-input" id="adminUser" placeholder="admin">
+          </div>
+          <div class="admin-field">
+            <label class="admin-label">Password</label>
+            <input type="password" class="admin-input" id="adminPass" placeholder="••••••••">
+          </div>
+          <div class="admin-msg" id="loginMsg"></div>
+          <button class="admin-btn-save" onclick="doLogin()" style="margin-top:8px">Masuk <i class="fas fa-arrow-right"></i></button>
+          <p style="text-align:center;margin-top:12px;font-size:0.78rem;color:var(--text-light)">Demo: admin / admin123</p>
+        </div>
+      </div>
+      <!-- DASHBOARD -->
+      <div id="adminDash" class="admin-section">
+        <div class="admin-tabs">
+          <button class="admin-tab active" onclick="switchTab('tabArmada',this)">🚗 Armada</button>
+          <button class="admin-tab" onclick="switchTab('tabSite',this)">⚙️ Pengaturan</button>
+          <button class="admin-tab" onclick="switchTab('tabKontak',this)">📞 Kontak</button>
+          <button class="admin-tab" onclick="doLogout()" style="margin-left:auto;color:var(--text-light)">Keluar</button>
+        </div>
+        <!-- Tab Armada -->
+        <div id="tabArmada" class="admin-tab-content">
+          <h4 style="margin-bottom:16px;font-family:'Playfair Display',serif">Kelola Armada</h4>
+          <div class="admin-vehicle-list" id="adminVehicleList"></div>
+        </div>
+        <!-- Tab Site Settings -->
+        <div id="tabSite" class="admin-tab-content" style="display:none">
+          <h4 style="margin-bottom:16px;font-family:'Playfair Display',serif">Pengaturan Website</h4>
+          <div class="admin-field">
+            <label class="admin-label">Nama Perusahaan</label>
+            <input type="text" class="admin-input" id="st_nama" value="Every Transport">
+          </div>
+          <div class="admin-field">
+            <label class="admin-label">Tagline / Subtitle Hero</label>
+            <input type="text" class="admin-input" id="st_tagline" value="Travel & Wisata Terpercaya Area Karesidenan Madiun">
+          </div>
+          <div class="admin-field">
+            <label class="admin-label">No. WhatsApp (format: 628xxx)</label>
+            <input type="text" class="admin-input" id="st_wa" value="6281234567890">
+          </div>
+          <button class="admin-btn-save" onclick="saveSiteSettings()"><i class="fas fa-save"></i> Simpan Perubahan</button>
+        </div>
+        <!-- Tab Kontak -->
+        <div id="tabKontak" class="admin-tab-content" style="display:none">
+          <h4 style="margin-bottom:16px;font-family:'Playfair Display',serif">Edit Informasi Kontak</h4>
+          <div class="admin-field">
+            <label class="admin-label">Alamat</label>
+            <input type="text" class="admin-input" id="kt_alamat" value="Jl. Raya Magetan, Kab. Magetan, Jawa Timur">
+          </div>
+          <div class="admin-field">
+            <label class="admin-label">Email</label>
+            <input type="email" class="admin-input" id="kt_email" value="info@everytransport.id">
+          </div>
+          <div class="admin-field">
+            <label class="admin-label">WhatsApp</label>
+            <input type="text" class="admin-input" id="kt_wa" value="+62 812-3456-7890">
+          </div>
+          <button class="admin-btn-save" onclick="saveKontak()"><i class="fas fa-save"></i> Simpan</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- VEHICLE EDIT MODAL -->
+<div class="admin-modal-inner" id="vehicleEditModal">
+  <div class="admin-modal-box">
+    <h3 class="admin-modal-title">Edit Kendaraan</h3>
+    <input type="hidden" id="ev_idx">
+    <div class="admin-field">
+      <label class="admin-label">Nama Kendaraan</label>
+      <input type="text" class="admin-input" id="ev_nama">
+    </div>
+    <div class="admin-field">
+      <label class="admin-label">Harga Mulai (Rp)</label>
+      <input type="text" class="admin-input" id="ev_harga">
+    </div>
+    <div class="admin-field">
+      <label class="admin-label">Kapasitas</label>
+      <input type="text" class="admin-input" id="ev_kapasitas">
+    </div>
+    <div class="admin-field">
+      <label class="admin-label">Deskripsi</label>
+      <input type="text" class="admin-input" id="ev_desc">
+    </div>
+    <div style="display:flex;gap:10px;margin-top:16px">
+      <button class="admin-btn-save" onclick="saveVehicle()"><i class="fas fa-save"></i> Simpan</button>
+      <button class="admin-btn admin-btn-edit" onclick="closeVehicleEdit()" style="flex:1;padding:12px">Batal</button>
+    </div>
+  </div>
+</div>
+
+<!-- PHOTO UPLOAD MODAL -->
+<div class="admin-modal-inner" id="photoUploadModal">
+  <div class="admin-modal-box">
+    <h3 class="admin-modal-title">Ganti Foto Kendaraan</h3>
+    <input type="hidden" id="pu_idx">
+    <img id="uploadPreview" class="upload-preview" alt="Preview">
+    <label class="upload-zone" id="uploadZone">
+      <input type="file" id="photoFile" accept="image/*" onchange="previewPhoto(event)">
+      <i class="fas fa-cloud-upload-alt" style="font-size:2rem;color:var(--gold);margin-bottom:12px;display:block"></i>
+      <p style="font-weight:600;margin-bottom:4px">Klik untuk Upload Foto</p>
+      <p style="font-size:0.8rem;color:var(--text-light)">PNG, JPG, WEBP — maks 5MB</p>
+    </label>
+    <div style="display:flex;gap:10px">
+      <button class="admin-btn-save" onclick="savePhoto()"><i class="fas fa-check"></i> Terapkan</button>
+      <button class="admin-btn admin-btn-edit" onclick="closePhotoUpload()" style="flex:1;padding:12px">Batal</button>
+    </div>
+    <div class="admin-msg" id="photoMsg"></div>
+  </div>
+</div>
+
+<script>
+// =====================
+// DATA STORE
+// =====================
+let siteData = {
+  namaPerusahaan: 'Every Transport',
+  tagline: 'Travel & Wisata Terpercaya Area Karesidenan Madiun',
+  wa: '6281234567890',
+  alamat: 'Jl. Raya Magetan, Kab. Magetan, Jawa Timur',
+  email: 'info@everytransport.id',
+  waDisplay: '+62 812-3456-7890'
+};
+
+// Load from localStorage
+function loadStorage(){
+  const sd = localStorage.getItem('et_siteData');
+  if(sd) siteData = {...siteData, ...JSON.parse(sd)};
+  const av = localStorage.getItem('et_armada');
+  if(av) armadaData = JSON.parse(av);
+}
+
+let armadaData = [
+  {
+    nama: 'Toyota Avanza',
+    seats: '7 Penumpang',
+    harga: 'Rp 350.000',
+    hargaRaw: 350000,
+    desc: 'Kendaraan keluarga yang nyaman untuk perjalanan jarak dekat hingga menengah. Cocok untuk wisata keluarga atau antar jemput bandara.',
+    features: ['AC Dingin','Bagasi Luas','Audio Sistem','GPS Tracker'],
+    badge: 'Terlaris',
+    icon: '🚗',
+    photo: null,
+    bgColor: '#1A2E45'
+  },
+  {
+    nama: 'Toyota Innova Reborn',
+    seats: '7 Penumpang',
+    harga: 'Rp 500.000',
+    hargaRaw: 500000,
+    desc: 'Kendaraan premium dengan interior mewah, ideal untuk perjalanan VIP, antar jemput bisnis, dan wisata keluarga kelas atas.',
+    features: ['AC Double Blower','Captain Seat','Diesel Turbo','Hiburan Lengkap'],
+    badge: 'Premium',
+    icon: '🚙',
+    photo: null,
+    bgColor: '#0D1B2A'
+  },
+  {
+    nama: 'Hiace Commuter',
+    seats: '14 Penumpang',
+    harga: 'Rp 900.000',
+    hargaRaw: 900000,
+    desc: 'Kendaraan angkutan grup yang andal, cocok untuk wisata kelompok kecil, arisan, reuni, dan corporate trip.',
+    features: ['AC Sejuk','Legroom Luas','Sound System','Safety Belt'],
+    badge: 'Populer',
+    icon: '🚐',
+    photo: null,
+    bgColor: '#243B55'
+  },
+  {
+    nama: 'Hiace Premio',
+    seats: '10 Penumpang',
+    harga: 'Rp 1.100.000',
+    hargaRaw: 1100000,
+    desc: 'Hiace versi mewah dengan kursi captain, cocok untuk perjalanan VIP grup kecil yang menginginkan kenyamanan premium.',
+    features: ['Captain Seat','Reclinable','Kaca Film UV','Pendingin Ekstra'],
+    badge: 'Luxury',
+    icon: '🚐',
+    photo: null,
+    bgColor: '#1A3A5C'
+  },
+  {
+    nama: 'Elf (Isuzu ELF)',
+    seats: '16 Penumpang',
+    harga: 'Rp 1.000.000',
+    hargaRaw: 1000000,
+    desc: 'Minibus tangguh cocok untuk medan pegunungan, wisata ke Telaga Sarangan, Bromo, dan destinasi alam menantang.',
+    features: ['Mesin Tangguh','AC Dingin','Suspensi Kuat','Bagasi Besar'],
+    badge: 'Tangguh',
+    icon: '🚐',
+    photo: null,
+    bgColor: '#2C3E50'
+  },
+  {
+    nama: 'Big Bus (Bus Besar)',
+    seats: '45-50 Penumpang',
+    harga: 'Rp 4.500.000',
+    hargaRaw: 4500000,
+    desc: 'Bus besar untuk study tour, ziarah massal, dan acara besar. Dilengkapi fasilitas lengkap untuk perjalanan jarak jauh.',
+    features: ['AC Freon','Toilet','Recliner Seat','Karaoke','TV LCD'],
+    badge: 'Best Value',
+    icon: '🚌',
+    photo: null,
+    bgColor: '#1B3A4B'
+  },
+  {
+    nama: 'Medium Bus',
+    seats: '25-30 Penumpang',
+    harga: 'Rp 2.500.000',
+    hargaRaw: 2500000,
+    desc: 'Pilihan ideal untuk grup menengah — wisata, hajatan, dan perjalanan bersama dengan harga terjangkau.',
+    features: ['AC Dingin','Audio Sistem','Bagasi Bawah','Seat Lebar'],
+    badge: 'Hemat',
+    icon: '🚌',
+    photo: null,
+    bgColor: '#1C3144'
+  }
+];
+
+const wisataDataAll = [
+  // JAWA TIMUR - ALAM
+  { nama:'Telaga Sarangan', region:'jatim', type:'alam', lokasi:'Magetan, Jawa Timur', emoji:'🏞️', bgClass:'bg-danau', desc:'Danau vulkanik indah di kaki Gunung Lawu, 1.200 mdpl. Ideal untuk liburan keluarga dengan pemandangan pegunungan yang memukau dan fasilitas perahu wisata.' },
+  { nama:'Gunung Lawu', region:'jatim', type:'alam', lokasi:'Magetan/Karanganyar', emoji:'🏔️', bgClass:'bg-gunung', desc:'Gunung setinggi 3.265 mdpl dengan jalur pendakian legendaris via Cemoro Sewu. Terdapat beberapa puncak dan situs bersejarah di puncaknya.' },
+  { nama:'Air Terjun Ironggolo', region:'jatim', type:'alam', lokasi:'Kediri, Jawa Timur', emoji:'💧', bgClass:'bg-air-terjun', desc:'Air terjun bertingkat yang berada di kawasan hutan lindung Kediri. Udara sejuk dan suasana alam yang asri menjadi daya tarik utama.' },
+  { nama:'Bromo Tengger Semeru', region:'jatim', type:'alam', lokasi:'Probolinggo, Jawa Timur', emoji:'🌋', bgClass:'bg-gunung', desc:'Taman Nasional paling ikonik di Jawa Timur. Lautan pasir, kawah Bromo yang aktif, dan matahari terbit paling memukau di Indonesia.' },
+  { nama:'Pantai Klayar', region:'jatim', type:'alam', lokasi:'Pacitan, Jawa Timur', emoji:'🌊', bgClass:'bg-pantai', desc:'Pantai berpasir putih dengan tebing karang megah dan seruling laut alami. Salah satu pantai terindah di Pacitan.' },
+  // JAWA TIMUR - RELIGI
+  { nama:'Makam Sunan Ampel', region:'jatim', type:'religi', lokasi:'Surabaya, Jawa Timur', emoji:'🕌', bgClass:'bg-masjid', desc:'Makam Wali Songo di kawasan Arab-Muslim Surabaya. Tempat ziarah paling ramai di Jawa Timur dengan masjid bersejarah abad ke-15.' },
+  { nama:'Makam Sunan Bonang', region:'jatim', type:'religi', lokasi:'Tuban, Jawa Timur', emoji:'🕌', bgClass:'bg-makam', desc:'Makam salah satu Wali Songo di kota Tuban. Menjadi destinasi ziarah wajib dalam paket wisata religi Jawa Timur.' },
+  { nama:'Pesantren Gontor', region:'jatim', type:'religi', lokasi:'Ponorogo, Jawa Timur', emoji:'🏫', bgClass:'bg-masjid', desc:'Pondok Modern Darussalam Gontor, pesantren modern ternama di Indonesia dengan arsitektur megah dan pendidikan berkualitas.' },
+  // JAWA TENGAH - ALAM
+  { nama:'Dieng Plateau', region:'jateng', type:'alam', lokasi:'Wonosobo, Jawa Tengah', emoji:'🌋', bgClass:'bg-gunung', desc:'Dataran tinggi vulkanik dengan telaga warna, kawah eksotis, dan festival budaya Dieng yang terkenal. Suhu bisa mencapai 0°C di malam hari.' },
+  { nama:'Karimunjawa', region:'jateng', type:'alam', lokasi:'Jepara, Jawa Tengah', emoji:'🏝️', bgClass:'bg-pantai', desc:'Kepulauan tropis dengan 27 pulau yang bening dan terumbu karang yang menakjubkan. Surga snorkeling dan menyelam di Jawa Tengah.' },
+  { nama:'Candi Borobudur', region:'jateng', type:'religi', lokasi:'Magelang, Jawa Tengah', emoji:'🏛️', bgClass:'bg-candi', desc:'Candi Buddha terbesar di dunia, warisan UNESCO. Ribuan relief indah dan 504 arca Buddha menghiasi candi megah abad ke-9 ini.' },
+  { nama:'Candi Prambanan', region:'jateng', type:'religi', lokasi:'Yogyakarta, Jawa Tengah', emoji:'🏛️', bgClass:'bg-candi', desc:'Kompleks candi Hindu terbesar di Indonesia. Menjulang 47 meter dengan relief Ramayana yang memukau dan latar belakang senja yang indah.' },
+  // JAWA BARAT - ALAM
+  { nama:'Kawah Putih Ciwidey', region:'jabar', type:'alam', lokasi:'Bandung, Jawa Barat', emoji:'🌋', bgClass:'bg-danau', desc:'Danau kawah berwarna putih-kehijauan dengan suasana berkabut yang magis. Salah satu destinasi paling fotogenik di Jawa Barat.' },
+  { nama:'Pangandaran', region:'jabar', type:'alam', lokasi:'Ciamis, Jawa Barat', emoji:'🏖️', bgClass:'bg-pantai', desc:'Pantai selatan Jawa Barat dengan pasir bersih, cagar alam, green canyon, dan sunset yang menakjubkan di Batu Karas.' },
+  { nama:'Makam Sunan Gunung Jati', region:'jabar', type:'religi', lokasi:'Cirebon, Jawa Barat', emoji:'🕌', bgClass:'bg-makam', desc:'Makam Wali Songo di Cirebon yang dikunjungi jutaan peziarah setiap tahun. Kompleks makam dengan arsitektur campuran Jawa-Cina-Islam.' },
+];
+
+// =====================
+// INIT
+// =====================
+window.addEventListener('DOMContentLoaded', function(){
+  loadStorage();
+  setTimeout(()=> document.getElementById('preloader').classList.add('hide'), 1800);
+  renderArmada();
+  renderWisata('semua');
+  populateArmadaSelect();
+  initScrollReveal();
+  initNavScroll();
+  initCounters();
+  renderAdminVehicleList();
+  applyStoredSiteSettings();
+});
+
+// =====================
+// NAVBAR
+// =====================
+function initNavScroll(){
+  window.addEventListener('scroll', ()=>{
+    const nav = document.getElementById('navbar');
+    if(window.scrollY > 60) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+}
+
+function toggleMenu(){
+  const menu = document.getElementById('mobileMenu');
+  const btn = document.getElementById('hamburger');
+  menu.classList.toggle('open');
+  btn.classList.toggle('active');
+}
+
+// =====================
+// COUNTERS
+// =====================
+function initCounters(){
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        document.querySelectorAll('[data-count]').forEach(el=>{
+          const target = parseInt(el.dataset.count);
+          const suffix = el.dataset.suffix || (target === 100 ? '%' : '+');
+          let current = 0;
+          const step = target / 60;
+          const timer = setInterval(()=>{
+            current = Math.min(current + step, target);
+            el.textContent = Math.round(current) + suffix;
+            if(current >= target) clearInterval(timer);
+          }, 20);
+        });
+        observer.disconnect();
+      }
+    });
+  }, {threshold:0.3});
+  const hero = document.getElementById('hero');
+  if(hero) observer.observe(hero);
+}
+
+// =====================
+// SCROLL REVEAL
+// =====================
+function initScrollReveal(){
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, {threshold:0.1, rootMargin:'0px 0px -40px 0px'});
+  reveals.forEach(el => obs.observe(el));
+}
+
+// =====================
+// RENDER ARMADA
+// =====================
+function renderArmada(){
+  const grid = document.getElementById('armadaGrid');
+  grid.innerHTML = '';
+  armadaData.forEach((v, i)=>{
+    const card = document.createElement('div');
+    card.className = 'armada-card reveal';
+    card.style.animationDelay = (i*0.08)+'s';
+    const photoContent = v.photo
+      ? `<img src="${v.photo}" alt="${v.nama}">`
+      : `<div class="armada-icon-placeholder">${v.icon}</div>`;
+    card.innerHTML = `
+      <div class="armada-img" style="background:${v.bgColor}">
+        ${photoContent}
+        <span class="armada-badge">${v.badge}</span>
+      </div>
+      <div class="armada-body">
+        <div class="armada-name">${v.nama}</div>
+        <div class="armada-seats"><i class="fas fa-users"></i> ${v.seats}</div>
+        <div class="armada-desc">${v.desc}</div>
+        <div class="armada-features">
+          ${v.features.map(f=>`<span class="feature-tag"><i class="fas fa-check" style="color:var(--gold)"></i>${f}</span>`).join('')}
+        </div>
+        <div class="armada-price">${v.harga}<span style="color:var(--text-light);font-size:0.75rem;font-weight:400">/perjalanan</span></div>
+        <button class="armada-btn-book" onclick="bookArmada('${v.nama}')">
+          <i class="fab fa-whatsapp"></i> Pesan Kendaraan Ini
+        </button>
+      </div>`;
+    grid.appendChild(card);
+  });
+  initScrollReveal();
+}
+
+function bookArmada(nama){
+  const wa = siteData.wa || '6281234567890';
+  const msg = encodeURIComponent(`Halo Every Transport 👋\n\nSaya ingin memesan *${nama}*.\n\nMohon informasi lebih lanjut mengenai:\n- Harga\n- Ketersediaan\n- Destinasi\n\nTerima kasih!`);
+  window.open(`https://wa.me/${wa}?text=${msg}`, '_blank');
+}
+
+function populateArmadaSelect(){
+  const sel = document.getElementById('bk_armada');
+  armadaData.forEach(v => {
+    const opt = document.createElement('option');
+    opt.value = v.nama;
+    opt.textContent = `${v.nama} (${v.seats})`;
+    sel.appendChild(opt);
+  });
+}
+
+// =====================
+// WISATA
+// =====================
+function filterWisata(filter, btn){
+  document.querySelectorAll('.wisata-tab').forEach(t=> t.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  let data = wisataDataAll;
+  if(filter !== 'semua'){
+    if(['alam','religi'].includes(filter)) data = data.filter(d=> d.type === filter);
+    else data = data.filter(d=> d.region === filter);
+  }
+  renderWisata(filter, data);
+}
+
+function renderWisata(filter, data){
+  if(!data) data = wisataDataAll;
+  const grid = document.getElementById('wisataGrid');
+  grid.innerHTML = '';
+  data.forEach((w,i)=>{
+    const card = document.createElement('div');
+    card.className = 'wisata-card';
+    card.style.opacity='0'; card.style.transform='translateY(20px)';
+    card.style.transition=`opacity 0.4s ${i*0.06}s ease, transform 0.4s ${i*0.06}s ease`;
+    card.innerHTML = `
+      <div class="wisata-img ${w.bgClass}">
+        <span style="font-size:3.5rem;position:relative;z-index:1">${w.emoji}</span>
+        <div class="wisata-img-overlay"></div>
+        <span class="wisata-region">${w.region==='jatim'?'Jawa Timur':w.region==='jateng'?'Jawa Tengah':'Jawa Barat'}</span>
+        <span class="wisata-type ${w.type}">${w.type==='alam'?'🌿 Alam':'🕌 Religi'}</span>
+      </div>
+      <div class="wisata-body">
+        <div class="wisata-name">${w.nama}</div>
+        <div class="wisata-loc"><i class="fas fa-map-marker-alt"></i>${w.lokasi}</div>
+        <div class="wisata-desc">${w.desc}</div>
+      </div>`;
+    grid.appendChild(card);
+    setTimeout(()=>{ card.style.opacity='1'; card.style.transform='translateY(0)'; }, 50);
+  });
+}
+
+// =====================
+// BOOKING
+// =====================
+function kirimBooking(){
+  const nama = document.getElementById('bk_nama').value.trim();
+  const hp = document.getElementById('bk_hp').value.trim();
+  const layanan = document.getElementById('bk_layanan').value;
+  const armada = document.getElementById('bk_armada').value;
+  const tgl = document.getElementById('bk_tgl').value;
+  const pax = document.getElementById('bk_pax').value;
+  const asal = document.getElementById('bk_asal').value.trim();
+  const tujuan = document.getElementById('bk_tujuan').value.trim();
+  const ket = document.getElementById('bk_ket').value.trim();
+
+  if(!nama || !hp || !layanan){
+    alert('⚠️ Harap isi Nama, No. HP, dan Jenis Layanan!');
+    return;
+  }
+  const wa = siteData.wa || '6281234567890';
+  const msg = `Halo Every Transport 🚗\n\n*FORM BOOKING*\n${'─'.repeat(30)}\n👤 *Nama:* ${nama}\n📱 *No. HP:* ${hp}\n🎯 *Layanan:* ${layanan}\n🚘 *Armada:* ${armada||'-'}\n📅 *Tanggal:* ${tgl||'-'}\n👥 *Penumpang:* ${pax||'-'}\n📍 *Asal:* ${asal||'-'}\n🏁 *Tujuan:* ${tujuan||'-'}\n📝 *Keterangan:* ${ket||'-'}\n${'─'.repeat(30)}\n\nMohon konfirmasi pemesanan. Terima kasih! 🙏`;
+  window.open(`https://wa.me/${wa}?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+// =====================
+// ADMIN
+// =====================
+function openAdmin(){ document.getElementById('adminModal').classList.add('open'); }
+function closeAdmin(){ document.getElementById('adminModal').classList.remove('open'); }
+
+function doLogin(){
+  const u = document.getElementById('adminUser').value;
+  const p = document.getElementById('adminPass').value;
+  const msg = document.getElementById('loginMsg');
+  if(u==='admin' && p==='admin123'){
+    document.getElementById('adminLogin').classList.remove('active');
+    document.getElementById('adminDash').classList.add('active');
+    renderAdminVehicleList();
+  } else {
+    msg.style.display='block';
+    msg.className='admin-msg error';
+    msg.textContent='❌ Username atau password salah!';
+  }
+}
+
+function doLogout(){
+  document.getElementById('adminDash').classList.remove('active');
+  document.getElementById('adminLogin').classList.add('active');
+  document.getElementById('adminUser').value='';
+  document.getElementById('adminPass').value='';
+  closeAdmin();
+}
+
+function switchTab(tabId, btn){
+  document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.admin-tab-content').forEach(t=>t.style.display='none');
+  if(btn) btn.classList.add('active');
+  const tab = document.getElementById(tabId);
+  if(tab) tab.style.display='block';
+}
+
+function renderAdminVehicleList(){
+  const list = document.getElementById('adminVehicleList');
+  if(!list) return;
+  list.innerHTML = '';
+  armadaData.forEach((v, i)=>{
+    const item = document.createElement('div');
+    item.className = 'admin-vehicle-item';
+    const thumbContent = v.photo
+      ? `<img src="${v.photo}" alt="${v.nama}" style="width:100%;height:100%;object-fit:cover;border-radius:8px">`
+      : `<span style="font-size:1.8rem">${v.icon}</span>`;
+    item.innerHTML = `
+      <div class="admin-vehicle-thumb">${thumbContent}</div>
+      <div>
+        <div class="admin-vehicle-name">${v.nama}</div>
+        <div class="admin-vehicle-price">${v.harga} / perjalanan</div>
+        <div style="font-size:0.78rem;color:var(--text-light);margin-top:2px">${v.seats}</div>
+      </div>
+      <div class="admin-vehicle-actions">
+        <button class="admin-btn admin-btn-edit" onclick="openVehicleEdit(${i})"><i class="fas fa-edit"></i> Edit</button>
+        <button class="admin-btn admin-btn-photo" onclick="openPhotoUpload(${i})"><i class="fas fa-camera"></i> Foto</button>
+      </div>`;
+    list.appendChild(item);
+  });
+}
+
+// Vehicle Edit
+function openVehicleEdit(idx){
+  const v = armadaData[idx];
+  document.getElementById('ev_idx').value = idx;
+  document.getElementById('ev_nama').value = v.nama;
+  document.getElementById('ev_harga').value = v.harga;
+  document.getElementById('ev_kapasitas').value = v.seats;
+  document.getElementById('ev_desc').value = v.desc;
+  document.getElementById('vehicleEditModal').classList.add('open');
+}
+function closeVehicleEdit(){ document.getElementById('vehicleEditModal').classList.remove('open'); }
+function saveVehicle(){
+  const idx = parseInt(document.getElementById('ev_idx').value);
+  armadaData[idx].nama = document.getElementById('ev_nama').value;
+  armadaData[idx].harga = document.getElementById('ev_harga').value;
+  armadaData[idx].seats = document.getElementById('ev_kapasitas').value;
+  armadaData[idx].desc = document.getElementById('ev_desc').value;
+  localStorage.setItem('et_armada', JSON.stringify(armadaData));
+  closeVehicleEdit();
+  renderArmada();
+  renderAdminVehicleList();
+  populateArmadaSelect();
+  showToast('✅ Data kendaraan berhasil diperbarui!');
+}
+
+// Photo Upload
+let pendingPhotoIdx = null;
+function openPhotoUpload(idx){
+  pendingPhotoIdx = idx;
+  document.getElementById('pu_idx').value = idx;
+  document.getElementById('uploadPreview').style.display='none';
+  document.getElementById('photoFile').value='';
+  document.getElementById('photoMsg').style.display='none';
+  document.getElementById('photoUploadModal').classList.add('open');
+}
+function closePhotoUpload(){ document.getElementById('photoUploadModal').classList.remove('open'); }
+function previewPhoto(event){
+  const file = event.target.files[0];
+  if(!file) return;
+  if(file.size > 5*1024*1024){
+    const msg = document.getElementById('photoMsg');
+    msg.style.display='block'; msg.className='admin-msg error'; msg.textContent='❌ Ukuran file melebihi 5MB!';
+    return;
+  }
+  const reader = new FileReader();
+  reader.onload = e=>{
+    const prev = document.getElementById('uploadPreview');
+    prev.src = e.target.result;
+    prev.style.display = 'block';
+    document.getElementById('uploadZone').style.display = 'none';
+  };
+  reader.readAsDataURL(file);
+}
+function savePhoto(){
+  const idx = parseInt(document.getElementById('pu_idx').value);
+  const prev = document.getElementById('uploadPreview');
+  if(!prev.src || prev.style.display==='none'){
+    const msg = document.getElementById('photoMsg');
+    msg.style.display='block'; msg.className='admin-msg error'; msg.textContent='❌ Pilih foto terlebih dahulu!';
+    return;
+  }
+  armadaData[idx].photo = prev.src;
+  localStorage.setItem('et_armada', JSON.stringify(armadaData));
+  closePhotoUpload();
+  document.getElementById('uploadZone').style.display='block';
+  renderArmada();
+  renderAdminVehicleList();
+  showToast('✅ Foto kendaraan berhasil diperbarui!');
+}
+
+// Site Settings
+function saveSiteSettings(){
+  siteData.namaPerusahaan = document.getElementById('st_nama').value;
+  siteData.tagline = document.getElementById('st_tagline').value;
+  siteData.wa = document.getElementById('st_wa').value;
+  localStorage.setItem('et_siteData', JSON.stringify(siteData));
+  applyStoredSiteSettings();
+  showToast('✅ Pengaturan website berhasil disimpan!');
+}
+
+function saveKontak(){
+  siteData.alamat = document.getElementById('kt_alamat').value;
+  siteData.email = document.getElementById('kt_email').value;
+  siteData.waDisplay = document.getElementById('kt_wa').value;
+  localStorage.setItem('et_siteData', JSON.stringify(siteData));
+  applyStoredSiteSettings();
+  showToast('✅ Info kontak berhasil disimpan!');
+}
+
+function applyStoredSiteSettings(){
+  // Update badge/tagline
+  const badge = document.querySelector('.hero-badge');
+  if(badge && siteData.tagline) badge.innerHTML = `<i class="fas fa-star"></i> ${siteData.tagline}`;
+  // Update WA links
+  const waLinks = document.querySelectorAll('.float-wa, .btn-wa');
+  waLinks.forEach(el=> {
+    if(el.tagName==='A') el.href = `https://wa.me/${siteData.wa}?text=Halo%20Every%20Transport%2C%20saya%20ingin%20bertanya`;
+  });
+  // Update kontak
+  const alamatEls = document.querySelectorAll('.kontak-value');
+  // simple update for demo
+}
+
+// Toast
+function showToast(msg){
+  let toast = document.getElementById('et_toast');
+  if(!toast){
+    toast = document.createElement('div');
+    toast.id = 'et_toast';
+    toast.style.cssText = 'position:fixed;top:80px;right:20px;background:var(--navy);color:var(--white);padding:14px 24px;border-radius:12px;z-index:9999;border-left:4px solid var(--gold);font-size:0.9rem;font-weight:600;box-shadow:0 8px 30px rgba(0,0,0,0.3);transform:translateX(120%);transition:transform 0.4s ease';
+    document.body.appendChild(toast);
+  }
+  toast.textContent = msg;
+  toast.style.transform = 'translateX(0)';
+  setTimeout(()=> toast.style.transform='translateX(120%)', 3000);
+}
+
+// Close modals on outside click
+document.getElementById('adminModal').addEventListener('click', function(e){
+  if(e.target === this) closeAdmin();
+});
+document.getElementById('vehicleEditModal').addEventListener('click', function(e){
+  if(e.target === this) closeVehicleEdit();
+});
+document.getElementById('photoUploadModal').addEventListener('click', function(e){
+  if(e.target === this) closePhotoUpload();
+});
+
+// Smooth reveal on all cards
+document.addEventListener('scroll', ()=>{
+  document.querySelectorAll('.reveal:not(.visible)').forEach(el=>{
+    const rect = el.getBoundingClientRect();
+    if(rect.top < window.innerHeight - 50) el.classList.add('visible');
+  });
+}, {passive:true});
+</script>
+</body>
+</html>
